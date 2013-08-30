@@ -79,6 +79,10 @@ Please follow the instructions and the evaluation plan given by NIST::
 
   http://www.nist.gov/itl/iad/mig/sre12.cfm
 
+Depending on the release year, the data may need to be flatten and reorganized. Please, follow the file structure as appearing when running::
+ 
+  $ bin/bob_dbmanage.py nist_sre12 dumplist
+   
    
 Adding noise
 ~~~~~~~~~~~~
