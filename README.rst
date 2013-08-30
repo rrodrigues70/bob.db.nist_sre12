@@ -1,7 +1,7 @@
 Speaker recognition protocol on the NIST SRE 2012 Database 
 ==========================================================
 
-The 2012 NIST Speaker Recognition Evaluation (SRE12) is part of an ongoing series that starts in 1996.
+The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing series that starts in 1996.
 
 In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work.
 
@@ -108,5 +108,5 @@ The denoising of the audio signal can be done using QIO::
 .. _nist_sre12: http://www.nist_sre12.org/
 .. _xbob.spkrec: https://github.com/bioidiap/xbob.spkrec
 .. _xbob.spkrec.nist_sre12: https://github.com/bioidiap/xbob.spkrec.nist_sre12
-.. _NIST SRE 2012 evaluation: http://www.nist.gov/itl/iad/mig/sre12.cfm
+.. _2012 NIST Speaker Recognition Evaluation: http://www.nist.gov/itl/iad/mig/sre12.cfm
 
