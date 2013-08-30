@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-# @author: Elie Khoruy <Elie.Khoury@idiap.ch>
+# @author: Elie Khoury <Elie.Khoury@idiap.ch>
 # @date: Thu Aug 22 17:49:19 CEST 2013
 #
 # Copyright (C) 2012-2013 Idiap Research Institute, Martigny, Switzerland
@@ -21,14 +21,12 @@ import xbob.db.verification.filelist
 import os
 
 class Database(xbob.db.verification.filelist.Database):
-  """Wrapper class for the subVoxforge database for speaker recognition (http://www.voxforge.org/).
-  this class defines a simple protocol for training, dev and and by splitting the audio files of the database in three main parts.
+  """Wrapper class for the NIST SRE 2012 database for speaker recognition (http://www.nist_sre12.org/).
   """
 
   def __init__(self, protocol='male'):
     # call base class constructor
-    # By default, the male protocol is used
-    
+    # By default, the male protocol is used 
     from pkg_resources import resource_filename
     
     lists = resource_filename(__name__, os.path.join('lists', protocol))

@@ -3,7 +3,7 @@
 # Laurent El Shafey <laurent.el-shafey@idiap.ch>
 # Fri Aug 23 16:27:27 CEST 2013
 #
-# Copyright (C) 2011-2012 Idiap Research Institute, Martigny, Switzerland
+# Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,54 +33,60 @@ class NistDatabaseTest(unittest.TestCase):
     # For Male protocol
     db_m = Database('male')
 
-    self.assertEqual(len(db_m.client_ids()), 7482) # 10 client ids for world, dev and eval
-    self.assertEqual(len(db_m.client_ids(groups='world')), 6766) # 10 client ids for world
-    self.assertEqual(len(db_m.client_ids(groups='optional_world_1')), 672) # 10 client ids for optional world 1
-    self.assertEqual(len(db_m.client_ids(groups='optional_world_2')), 672) # 10 client ids for optional world 2
-    self.assertEqual(len(db_m.client_ids(groups='dev')), 680) # 10 client ids for dev
-    self.assertEqual(len(db_m.client_ids(groups='eval')), 763) # 10 client ids for eval
+    self.assertEqual(len(db_m.client_ids()), 7482)
+    self.assertEqual(len(db_m.client_ids(groups='world')), 6766)
+    self.assertEqual(len(db_m.client_ids(groups='optional_world_1')), 672)
+    self.assertEqual(len(db_m.client_ids(groups='optional_world_2')), 672)
+    self.assertEqual(len(db_m.client_ids(groups='dev')), 680)
+    self.assertEqual(len(db_m.client_ids(groups='eval')), 763)
 
-    self.assertEqual(len(db_m.model_ids()), 7482) # 30 model ids for world, dev and eval
-    self.assertEqual(len(db_m.model_ids(groups='world')), 6766) # 10 model ids for world
-    self.assertEqual(len(db_m.model_ids(groups='optional_world_1')), 672) # 10 model ids for optional world 1
-    self.assertEqual(len(db_m.model_ids(groups='optional_world_2')), 672) # 10 model ids for optional world 2
-    self.assertEqual(len(db_m.model_ids(groups='dev')), 680) # 10 model ids for dev
-    self.assertEqual(len(db_m.model_ids(groups='eval')), 763) # 10 model ids for eval
+    self.assertEqual(len(db_m.model_ids()), 7482)
+    self.assertEqual(len(db_m.model_ids(groups='world')), 6766)
+    self.assertEqual(len(db_m.model_ids(groups='optional_world_1')), 672)
+    self.assertEqual(len(db_m.model_ids(groups='optional_world_2')), 672)
+    self.assertEqual(len(db_m.model_ids(groups='dev')), 680)
+    self.assertEqual(len(db_m.model_ids(groups='eval')), 763)
 
-    self.assertEqual(len(db_m.objects(groups='world')), 33311) # 3148 samples in the world set
+    self.assertEqual(len(db_m.objects(groups='world')), 33311)
 
-    self.assertEqual(len(db_m.objects(groups='dev', purposes='enrol')), 16941) # 1304 samples for enrollment in the dev set
-    self.assertEqual(len(db_m.objects(groups='dev', purposes='enrol', model_ids='MIX104296')), 12) # 240 samples to enroll model 'Dcoetzee' in the dev set
-    self.assertEqual(len(db_m.objects(groups='dev', purposes='probe')), 19866) # 300 samples as probes in the dev set
+    self.assertEqual(len(db_m.objects(groups='dev', purposes='enrol')), 16941)
+    self.assertEqual(len(db_m.objects(groups='dev', purposes='enrol', model_ids='MIX104296')), 12)
+    self.assertEqual(len(db_m.objects(groups='dev', purposes='probe')), 19866)
 
-    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol')), 47486) # 47486 samples for enrollment in the eval set
-    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol', model_ids='MIX104296')), 21) # 120 samples to enroll model 'rortiz' in the eval set
-    self.assertEqual(len(db_m.objects(groups='eval', purposes='probe')), 29728) # 300 samples as probes in the eval set
+    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol')), 47486)
+    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol', model_ids='MIX104296')), 21)
+    self.assertEqual(len(db_m.objects(groups='eval', purposes='probe')), 29728)
 
     # For Female protocol
     db_f = Database('female')
 
-    self.assertEqual(len(db_f.client_ids()), 10271) # 10 client ids for world, dev and eval
-    self.assertEqual(len(db_f.client_ids(groups='world')), 9198) # 10 client ids for world
-    self.assertEqual(len(db_f.client_ids(groups='optional_world_1')), 941) # 10 client ids for optional world 1
-    self.assertEqual(len(db_f.client_ids(groups='optional_world_2')), 941) # 10 client ids for optional world 2
-    self.assertEqual(len(db_f.client_ids(groups='dev')), 1039) # 10 client ids for dev
-    self.assertEqual(len(db_f.client_ids(groups='eval')), 1155) # 10 client ids for eval
+    self.assertEqual(len(db_f.client_ids()), 10271)
+    self.assertEqual(len(db_f.client_ids(groups='world')), 9198)
+    self.assertEqual(len(db_f.client_ids(groups='optional_world_1')), 941)
+    self.assertEqual(len(db_f.client_ids(groups='optional_world_2')), 941)
+    self.assertEqual(len(db_f.client_ids(groups='dev')), 1039)
+    self.assertEqual(len(db_f.client_ids(groups='eval')), 1155)
 
-    self.assertEqual(len(db_f.model_ids()), 10271) # 30 model ids for world, dev and eval
-    self.assertEqual(len(db_f.model_ids(groups='world')), 9198) # 10 model ids for world
-    self.assertEqual(len(db_f.model_ids(groups='optional_world_1')), 941) # 10 model ids for optional world 1
-    self.assertEqual(len(db_f.model_ids(groups='optional_world_2')), 941) # 10 model ids for optional world 2
-    self.assertEqual(len(db_f.model_ids(groups='dev')), 1039) # 10 model ids for dev
-    self.assertEqual(len(db_f.model_ids(groups='eval')), 1155) # 10 model ids for eval
+    self.assertEqual(len(db_f.model_ids()), 10271)
+    self.assertEqual(len(db_f.model_ids(groups='world')), 9198)
+    self.assertEqual(len(db_f.model_ids(groups='optional_world_1')), 941)
+    self.assertEqual(len(db_f.model_ids(groups='optional_world_2')), 941)
+    self.assertEqual(len(db_f.model_ids(groups='dev')), 1039)
+    self.assertEqual(len(db_f.model_ids(groups='eval')), 1155)
 
-    self.assertEqual(len(db_f.objects(groups='world')), 42532) # 3148 samples in the world set
+    self.assertEqual(len(db_f.objects(groups='world')), 42532)
 
-    self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol')), 24693) # 1304 samples for enrollment in the dev set
-    self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol', model_ids='MIX108878')), 30) # 240 samples to enroll model 'Dcoetzee' in the dev set
-    self.assertEqual(len(db_f.objects(groups='dev', purposes='probe')), 25980) # 300 samples as probes in the dev set
+    self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol')), 24693)
+    self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol', model_ids='MIX108878')), 30)
+    self.assertEqual(len(db_f.objects(groups='dev', purposes='probe')), 25980)
 
-    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol')), 66220) # 1509 samples for enrollment in the eval set
-    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol', model_ids='MIX108878')), 33) # 120 samples to enroll model 'rortiz' in the eval set
-    self.assertEqual(len(db_f.objects(groups='eval', purposes='probe')), 43378) # 300 samples as probes in the eval set
+    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol')), 66220)
+    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol', model_ids='MIX108878')), 33)
+    self.assertEqual(len(db_f.objects(groups='eval', purposes='probe')), 43378)
+
+  def test02_driver_api(self):
+
+    from bob.db.script.dbmanage import main
+    self.assertEqual(main('nist_sre12 dumplist --self-test'.split()), 0)
+    self.assertEqual(main('nist_sre12 checkfiles --list-directory . --self-test'.split()), 0)
 

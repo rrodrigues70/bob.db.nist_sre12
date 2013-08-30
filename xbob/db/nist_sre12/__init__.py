@@ -18,8 +18,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 """
-Details about the Voxforge database can be found here:
-http://www.voxforge.org/
+Details about the NIST SRE 2012 database can be found here:
+http://www.nist_sre12.org/
 """
 
 from .query import Database

@@ -3,7 +3,7 @@
 # Laurent El Shafey <laurent.el-shafey@idiap.ch>
 # Fri Aug 23 16:51:41 CEST 2013
 #
-# Copyright (C) 2011-2012 Idiap Research Institute, Martigny, Switzerland
+# Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""Commands the Voxforge database can respond to.
+"""Commands the NIST SRE 2012 database can respond to.
 """
 
 import os
@@ -28,7 +28,7 @@ def dumplist(args):
   """Dumps lists of files based on your criteria"""
 
   from .query import Database
-  db = Database()
+  db = Database(protocol=args.protocol)
 
   r = db.objects(
       purposes=args.purpose,
@@ -49,7 +49,7 @@ def checkfiles(args):
   """Checks existence of files based on your criteria"""
 
   from .query import Database
-  db = Database()
+  db = Database(protocol=args.protocol)
 
   r = db.objects()
 
@@ -77,7 +77,7 @@ def checkfiles(args):
 class Interface(BaseInterface):
 
   def name(self):
-    return 'voxforge'
+    return 'nist_sre12'
 
   def version(self):
     import pkg_resources # part of setuptools
@@ -94,7 +94,7 @@ class Interface(BaseInterface):
     from . import __doc__ as docs
 
     subparsers = self.setup_parser(parser,
-        "Voxforge database", docs)
+        "NIST SRE 2012 database", docs)
 
     import argparse
 
@@ -102,6 +102,7 @@ class Interface(BaseInterface):
     parser = subparsers.add_parser('dumplist', help=dumplist.__doc__)
     parser.add_argument('-d', '--directory', default='', help="if given, this path will be prepended to every entry returned.")
     parser.add_argument('-e', '--extension', default='', help="if given, this extension will be appended to every entry returned.")
+    parser.add_argument('-p', '--protocol', help="Gives the data for the given protocol.", choices=('male', 'female'), default='male')
     parser.add_argument('-u', '--purpose', help="if given, this value will limit the output files to those designed for the given purposes.", choices=('enrol', 'probe', ''))
     parser.add_argument('-g', '--group', help="if given, this value will limit the output files to those belonging to a particular protocolar group.", choices=('dev', 'eval', 'world', 'optional_world_1', 'optional_world_2', ''))
     parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
@@ -112,6 +113,7 @@ class Interface(BaseInterface):
     parser.add_argument('-l', '--list-directory', required=True, help="The directory which contains the file lists.")
     parser.add_argument('-d', '--directory', dest="directory", default='', help="if given, this path will be prepended to every entry returned.")
     parser.add_argument('-e', '--extension', dest="extension", default='', help="if given, this extension will be appended to every entry returned.")
+    parser.add_argument('-p', '--protocol', help="Gives the data for the given protocol.", choices=('male', 'female'), default='male')
     parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
 
     parser.set_defaults(func=checkfiles) #action
