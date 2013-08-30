@@ -1,14 +1,13 @@
-Speaker recognition protocol on the Voxforge Database 
-=====================================================
+Speaker recognition protocol on the NIST SRE 2012 Database 
+==========================================================
 
-`Voxforge`_ offers a collection transcribed speech for use with **Free** and **Open Source Speech Recognition Engines**. 
-In this package, we design a speaker recognition protocol that uses a **small subset of the english audio files** (only 6561 files) belonging to **30 speakers** randomly selected.
-This subset is split into three equivalent parts: Training (10 speakers), Development (10 speakers) and Test (10 speakers) sets.
- 
-This package serves as a toy example of speaker recognition database while testing `xbob.speaker_recognition`_.
+The 2012 NIST Speaker Recognition Evaluation (SRE12) is part of an ongoing series that starts in 1996.
 
-The `xbob.speaker_recognition`_  is developed at Idiap during its participation to the `NIST SRE 2012 evaluation`_. If you use this package and/or its results, please cite the following
-publications:
+In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work.
+
+This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12. `xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap. The list files can also be used independently as explained below.
+
+If you use this package and/or its results, please cite the following publications:
 
 1. The original paper presented at the NIST SRE 2012 workshop::
 
@@ -23,13 +22,27 @@ publications:
        pdf = {http://publications.idiap.ch/downloads/papers/2012/Khoury_NISTSRE_2012.pdf}
     }
 
-2. Bob as the core framework used to run the experiments::
+
+2. The paper that described the development set used by the I4U consortium::
+
+    @inproceedings{Saedi_INTERSPEECH_2013,
+       author = {Saeidi, Rahim and others},
+       month = {aug},
+       title = {I4U Submission to NIST SRE 2012: a large-scale collaborative effort for noise-robust speaker verification},
+       booktitle = {INTERSPEECH},
+       year = {2013},
+       location = {Lyon, France},
+       pdf = {to appear}
+    }
+
+
+3. Bob as the core framework used to run the experiments::
 
     @inproceedings{Anjos_ACMMM_2012,
       author = {A. Anjos and L. El Shafey and R. Wallace and M. G\"unther and C. McCool and S. Marcel},
       title = {Bob: a free signal processing and machine learning toolbox for researchers},
       year = {2012},
-      month = oct,
+      month = {oct},
       booktitle = {20th ACM Conference on Multimedia Systems (ACMMM), Nara, Japan},
       publisher = {ACM Press},
       url = {http://publications.idiap.ch/downloads/papers/2012/Anjos_Bob_ACMMM12.pdf},
@@ -42,9 +55,9 @@ Installation
 
 Just download this package and decompress it locally::
 
-  $ wget http://pypi.python.org/packages/source/x/xbob.voxforge/xbob.db.voxforge-0.0.1a0.zip
-  $ unzip xbob.db.voxforge-0.0.1a0.zip
-  $ cd xbob.db.voxforge
+  $ wget http://pypi.python.org/packages/source/x/xbob.db.nist_sre12/xbob.db.nist_sre12-0.0.1a0.zip
+  $ unzip xbob.db.nist_sre12-0.0.1a0.zip
+  $ cd xbob.db.nist_sre12
 
 Use buildout to bootstrap and have a working environment ready for
 experiments::
@@ -58,11 +71,42 @@ This also requires that bob (>= 1.2.0) is installed.
 Getting the data
 ~~~~~~~~~~~~~~~~
 
-The data can be downloaded from its original URL (on Voxforge) and extracted by running `download_and_untar.sh`_ that takes as input the path in which the data will be stored::
+You need to order the NIST SRE databases (Fisher, Switchboard, MIXER)::
 
-  $ ./download_and_untar.sh PATH/TO/WAV/DIRECTORY
+  http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2013S03
 
-.. _Voxforge: http://www.voxforge.org/
-.. _xbob.speaker_recognition: https://github.com/bioidiap/xbob.speaker_recognition
+Please follow the instructions and the evaluation plan given by NIST::
+
+  http://www.nist.gov/itl/iad/mig/sre12.cfm
+
+
+Using independently the file lists
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The file list of the development and evaluation set are shipped with this package. They can be used independently. You can find them here::
+
+  ./xbob/db/nist_sre12/lists/
+
+The file list of the development set were prepared by the I4U consortium. The file names were then normalized following the PRISM definition::
+
+   http://code.google.com/p/prism-set
+   
+Adding noise
+~~~~~~~~~~~~
+
+In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set. This was done using FaNT::
+  
+  http://dnt.kr.hsnr.de/download.html
+
+Speech enhancement
+~~~~~~~~~~~~~~~~~~
+
+The denoising of the audio signal can be done using QIO::
+  
+  http://www1.icsi.berkeley.edu/Speech/papers/qio/
+
+.. _nist_sre12: http://www.nist_sre12.org/
+.. _xbob.spkrec: https://github.com/bioidiap/xbob.spkrec
+.. _xbob.spkrec.nist_sre12: https://github.com/bioidiap/xbob.spkrec.nist_sre12
 .. _NIST SRE 2012 evaluation: http://www.nist.gov/itl/iad/mig/sre12.cfm
-.. _download_and_untar.sh: https://github.com/bioidiap/xbob.db.voxforge/blob/master/download_and_untar.sh
+
