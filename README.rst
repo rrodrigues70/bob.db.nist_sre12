@@ -79,15 +79,6 @@ Please follow the instructions and the evaluation plan given by NIST::
 
   http://www.nist.gov/itl/iad/mig/sre12.cfm
 
-
-Using independently the file lists
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The file list of the development and evaluation set are shipped with this package. They can be used independently. You can find them here::
-
-  ./xbob/db/nist_sre12/lists/
-
-The file list of the development set were prepared by the I4U consortium. 
    
 Adding noise
 ~~~~~~~~~~~~
@@ -108,3 +99,15 @@ The denoising of the audio signal can be done using QIO::
 .. _xbob.spkrec.nist_sre12: https://github.com/bioidiap/xbob.spkrec.nist_sre12
 .. _2012 NIST Speaker Recognition Evaluation: http://www.nist.gov/itl/iad/mig/sre12.cfm
 .. _PRISM definition: http://code.google.com/p/prism-set
+
+
+Using independently the file lists
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The file list of the development and evaluation set are shipped with this package. They can be used independently. You can find them here::
+
+  ./xbob/db/nist_sre12/lists/
+
+The file list of the development set were prepared by the I4U consortium.
+
+In case you need any help, please contact us.
