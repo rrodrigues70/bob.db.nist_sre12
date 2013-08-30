@@ -53,8 +53,8 @@ class NistDatabaseTest(unittest.TestCase):
     self.assertEqual(len(db_m.objects(groups='dev', purposes='enrol', model_ids='MIX104296')), 12) # 240 samples to enroll model 'Dcoetzee' in the dev set
     self.assertEqual(len(db_m.objects(groups='dev', purposes='probe')), 19866) # 300 samples as probes in the dev set
 
-    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol')), 1509) # 1509 samples for enrollment in the eval set
-    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol', model_ids='MIX104296')), 21)) # 120 samples to enroll model 'rortiz' in the eval set
+    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol')), 47486) # 47486 samples for enrollment in the eval set
+    self.assertEqual(len(db_m.objects(groups='eval', purposes='enrol', model_ids='MIX104296')), 21) # 120 samples to enroll model 'rortiz' in the eval set
     self.assertEqual(len(db_m.objects(groups='eval', purposes='probe')), 29728) # 300 samples as probes in the eval set
 
     # For Female protocol
@@ -78,9 +78,9 @@ class NistDatabaseTest(unittest.TestCase):
 
     self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol')), 24693) # 1304 samples for enrollment in the dev set
     self.assertEqual(len(db_f.objects(groups='dev', purposes='enrol', model_ids='MIX108878')), 30) # 240 samples to enroll model 'Dcoetzee' in the dev set
-    self.assertEqual(len(db_f.objects(groups='dev', purposes='probe')), ) # 300 samples as probes in the dev set
+    self.assertEqual(len(db_f.objects(groups='dev', purposes='probe')), 25980) # 300 samples as probes in the dev set
 
     self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol')), 66220) # 1509 samples for enrollment in the eval set
-    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol', model_ids='MIX108878')), 33)) # 120 samples to enroll model 'rortiz' in the eval set
+    self.assertEqual(len(db_f.objects(groups='eval', purposes='enrol', model_ids='MIX108878')), 33) # 120 samples to enroll model 'rortiz' in the eval set
     self.assertEqual(len(db_f.objects(groups='eval', purposes='probe')), 43378) # 300 samples as probes in the eval set
 
