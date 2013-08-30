@@ -71,7 +71,7 @@ This also requires that bob (>= 1.2.0) is installed.
 Getting the data
 ~~~~~~~~~~~~~~~~
 
-You need to order the NIST SRE databases (Fisher, Switchboard, MIXER)::
+You need to order the NIST SRE databases (Fisher, Switchboard, and Mixer)::
 
   http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2013S03
 
@@ -83,7 +83,7 @@ Please follow the instructions and the evaluation plan given by NIST::
 Adding noise
 ~~~~~~~~~~~~
 
-In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set. This was done using FaNT::
+In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set. This can be done using FaNT::
   
   http://dnt.kr.hsnr.de/download.html
 
@@ -104,10 +104,10 @@ The denoising of the audio signal can be done using QIO::
 Using independently the file lists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The file list of the development and evaluation set are shipped with this package. They can be used independently. You can find them here::
+The file lists of the development and evaluation sets are shipped with this package. They can be used independently, and can be found here::
 
-  xbob/db/nist_sre12/lists/
+  $ cd xbob/db/nist_sre12/lists/
 
-The file list of the development set were prepared by the I4U consortium.
+The file lists of the development set were prepared by the I4U consortium.
 
 In case you need any help, please contact us.
