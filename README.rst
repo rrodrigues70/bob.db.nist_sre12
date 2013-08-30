@@ -3,7 +3,7 @@ Speaker recognition protocol on the NIST SRE 2012 Database
 
 The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing series that starts in 1996.
 
-In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work. The file names were then normalized following the `PRISM definition`_::
+In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work. The file names were then normalized following the `PRISM definition`_.
 
 This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12. `xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap. The list files can also be used independently as explained below.
 
@@ -57,7 +57,7 @@ Just download this package and decompress it locally::
 
   $ wget http://pypi.python.org/packages/source/x/xbob.db.nist_sre12/xbob.db.nist_sre12-0.0.1a0.zip
   $ unzip xbob.db.nist_sre12-0.0.1a0.zip
-  $ cd xbob.db.nist_sre12
+  $ cd xbob.db.nist_sre12-0.0.1a0
 
 Use buildout to bootstrap and have a working environment ready for
 experiments::
@@ -106,7 +106,7 @@ Using independently the file lists
 
 The file list of the development and evaluation set are shipped with this package. They can be used independently. You can find them here::
 
-  ./xbob/db/nist_sre12/lists/
+  xbob/db/nist_sre12/lists/
 
 The file list of the development set were prepared by the I4U consortium.
 
