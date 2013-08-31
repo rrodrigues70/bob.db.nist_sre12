@@ -23,11 +23,12 @@ setup(
 
     name='xbob.db.nist_sre12',
     version='0.0.1a2',
-    description='Speaker verification protocol on a subset of the NIST SRE 2012',
+    description='Speaker verification protocol on the NIST SRE 2012',
     url='http://pypi.python.org/pypi/xbob.db.nist_sre12',
     license='GPLv3',
     author='Elie Khoury',
     author_email='Elie.Khoury@idiap.ch',
+    keywords = "Speaker Recognition, Speaker verification, Gaussian Mixture Model, ISV, UBM-GMM, I-Vector, Audio processing, NIST SRE 2012, Database",
     long_description=open('README.rst').read(),
 
     packages=find_packages(),
