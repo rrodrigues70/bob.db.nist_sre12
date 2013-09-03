@@ -3,7 +3,7 @@ Speaker recognition protocol on the NIST SRE 2012 Database
 
 The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing series that starts in 1996.
 
-In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work. The file names were then normalized following the `PRISM definition`_.
+In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz). The file names were then normalized following the `PRISM definition`_.
 
 This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12. `xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap. The list files can also be used independently as explained below.
 
