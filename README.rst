@@ -82,7 +82,35 @@ Please follow the instructions and the evaluation plan given by NIST::
 Depending on the release year, the data may need to be flatten and reorganized. Please, follow the file structure as appearing when running::
  
   $ bin/bob_dbmanage.py nist_sre12 dumplist
-   
+
+For this purpose, you will need the utilities provided by NIST with the database, as well as `sox`.
+
+.. _sox: http://sox.sourceforge.net/
+
+
+Decompressing the data and splitting the audio channels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The data provided by NIST are compressed in a non-standard format. NIST supplies a binary called `w_decode` to perform the decompression.
+Therefore, you should decompress all the files using the following command (where NIST_FOLDER/bin is the one containing the `w_decode` utility::
+
+  $ NIST_FOLDER/bin/w_decode -o pcm $compressedfile $decompressedfile
+
+Several files are in stereo and hence contain two audio channels. These files needs to be split using a script similar to the following one::
+
+  $ decompressedfileStereo=`basename $decompressedfile .sph`
+  $ num=`soxi $decompressedfile | grep Channels | cut -c 18`
+  $ echo $num
+  $ if [ $num -eq 2 ]
+  $ then # File is stereo
+  $   echo sox $decompressedfile -c 1 $outputDir/${decompressedfileStereo}-a.sph mixer -l
+  $   sox $decompressedfile -c 1 $outputDir/${decompressedfileStereo}-a.sph mixer -l
+  $   sox $decompressedfile -c 1 $outputDir/${decompressedfileStereo}-b.sph mixer -r
+  $ else # File is mono
+  $   echo cp $decompressedfile $outputDir/
+  $   cp $decompressedfile $outputDir/
+  $ fi
+
    
 Adding noise
 ~~~~~~~~~~~~
@@ -90,6 +118,7 @@ Adding noise
 In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set. This can be done using FaNT::
   
   http://dnt.kr.hsnr.de/download.html
+
 
 Speech enhancement
 ~~~~~~~~~~~~~~~~~~
