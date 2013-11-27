@@ -1,4 +1,3 @@
 include README.rst bootstrap.py buildout.cfg COPYING
 recursive-include docs *.py *.rst
-recursive-include PRISM *.py *.lst *.lst.GD LOGS
-recursive-include xbob *.sql3
+recursive-include xbob *.sql3 *.lst *.lst.GD LOGS

@@ -165,6 +165,9 @@ def add_command(subparsers):
 
   parser.add_argument('-R', '--recreate', action='store_true', help="If set, I'll first erase the current database")
   parser.add_argument('-v', '--verbose', action='count', help="Do SQL operations in a verbose way")
-  parser.add_argument('-D', '--datadir', metavar='DIR', default='PRISM/', help="Change the path to the containing information about the NIST SRE 2012 database.")
+  from pkg_resources import resource_filename
+  prism_basedir = 'prism'
+  prism_path = resource_filename(__name__, prism_basedir)
+  parser.add_argument('-D', '--datadir', metavar='DIR', default=prism_path, help="Change the path to the containing information about the NIST SRE 2012 database.")
 
   parser.set_defaults(func=create) #action
