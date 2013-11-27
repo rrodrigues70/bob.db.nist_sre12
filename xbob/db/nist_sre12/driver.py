@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
 # Laurent El Shafey <laurent.el-shafey@idiap.ch>
-# Fri Aug 23 16:51:41 CEST 2013
 #
-# Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
+# Copyright (C) 2012-2013 Idiap Research Institute, Martigny, Switzerland
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,22 +16,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""Commands the NIST SRE 2012 database can respond to.
+"""Bob Database Driver entry-point for the NIST SRE 2012 database
 """
 
 import os
 import sys
 from bob.db.driver import Interface as BaseInterface
 
+# Driver API
+# ==========
+
 def dumplist(args):
   """Dumps lists of files based on your criteria"""
 
   from .query import Database
-  db = Database(protocol=args.protocol)
+  db = Database()
 
   r = db.objects(
+      protocol=args.protocol,
       purposes=args.purpose,
+      model_ids=args.client,
       groups=args.group,
+      classes=args.sclass
   )
 
   output = sys.stdout
@@ -41,24 +46,27 @@ def dumplist(args):
     output = null()
 
   for f in r:
-    output.write('%s\n' % f.make_path(directory=args.directory,extension=args.extension))
+    output.write('%s\n' % (f.make_path(args.directory, args.extension),))
 
   return 0
+
 
 def checkfiles(args):
   """Checks existence of files based on your criteria"""
 
   from .query import Database
-  db = Database(protocol=args.protocol)
+  db = Database()
 
-  r = db.objects()
+  r = db.objects(protocol=args.protocol)
 
   # go through all files, check if they are available on the filesystem
   good = []
   bad = []
   for f in r:
-    if os.path.exists(f.make_path(args.directory, args.extension)): good.append(f)
-    else: bad.append(f)
+    if os.path.exists(f.make_path(args.directory, args.extension)):
+      good.append(f)
+    else:
+      bad.append(f)
 
   # report
   output = sys.stdout
@@ -68,11 +76,49 @@ def checkfiles(args):
 
   if bad:
     for f in bad:
-      output.write('Cannot find file "%s"\n' % f.make_path(args.directory, args.extension))
+      output.write('Cannot find file "%s"\n' % (f.make_path(args.directory, args.extension),))
     output.write('%d files (out of %d) were not found at "%s"\n' % \
         (len(bad), len(r), args.directory))
 
   return 0
+
+
+def reverse(args):
+  """Returns a list of file database identifiers given the path stems"""
+
+  from .query import Database
+  db = Database()
+
+  output = sys.stdout
+  if args.selftest:
+    from bob.db.utils import null
+    output = null()
+
+  r = db.reverse(args.path)
+  for f in r: output.write('%d\n' % f.id)
+
+  if not r: return 1
+
+  return 0
+
+def path(args):
+  """Returns a list of fully formed paths or stems given some file id"""
+
+  from .query import Database
+  db = Database()
+
+  output = sys.stdout
+  if args.selftest:
+    from bob.db.utils import null
+    output = null()
+
+  r = db.paths(args.id, prefix=args.directory, suffix=args.extension)
+  for path in r: output.write('%s\n' % path)
+
+  if not r: return 1
+
+  return 0
+
 
 class Interface(BaseInterface):
 
@@ -80,14 +126,17 @@ class Interface(BaseInterface):
     return 'nist_sre12'
 
   def version(self):
-    import pkg_resources # part of setuptools
+    import pkg_resources  # part of setuptools
     return pkg_resources.require('xbob.db.%s' % self.name())[0].version
 
   def files(self):
-    return ()
+
+    from pkg_resources import resource_filename
+    raw_files = ('db.sql3',)
+    return [resource_filename(__name__, k) for k in raw_files]
 
   def type(self):
-    return 'text'
+    return 'sqlite'
 
   def add_commands(self, parser):
 
@@ -96,24 +145,44 @@ class Interface(BaseInterface):
     subparsers = self.setup_parser(parser,
         "NIST SRE 2012 database", docs)
 
+    # the "create" action from a submodule
+    from .create import add_command as create_command
+    create_command(subparsers)
+
+    from .query import Database
     import argparse
+    db = Database()
 
     # the "dumplist" action
     parser = subparsers.add_parser('dumplist', help=dumplist.__doc__)
-    parser.add_argument('-d', '--directory', default='', help="if given, this path will be prepended to every entry returned.")
-    parser.add_argument('-e', '--extension', default='', help="if given, this extension will be appended to every entry returned.")
-    parser.add_argument('-p', '--protocol', help="Gives the data for the given protocol.", choices=('male', 'female'), default='male')
-    parser.add_argument('-u', '--purpose', help="if given, this value will limit the output files to those designed for the given purposes.", choices=('enrol', 'probe', ''))
-    parser.add_argument('-g', '--group', help="if given, this value will limit the output files to those belonging to a particular protocolar group.", choices=('dev', 'eval', 'world', 'optional_world_1', 'optional_world_2', ''))
+    parser.add_argument('-d', '--directory', help="if given, this path will be prepended to every entry returned.")
+    parser.add_argument('-e', '--extension', help="if given, this extension will be appended to every entry returned.")
+    parser.add_argument('-p', '--protocol', help="if given, limits the dump to a particular subset of the data that corresponds to the given protocol", choices=db.protocol_names() if db.is_valid() else ())
+    parser.add_argument('-u', '--purpose', help="if given, this value will limit the output files to those designed for the given purposes.", choices=db.purposes() if db.is_valid() else ())
+    parser.add_argument('-g', '--group', help="if given, this value will limit the output files to those belonging to a particular protocolar group.", choices=db.groups() if db.is_valid() else ())
+    parser.add_argument('-C', '--client', type=int, help="if given, this value will limit the output files to those belonging to the given client.", choices=db.model_ids() if db.is_valid() else ())
+    parser.add_argument('-c', '--class', dest="sclass", help="if given, this value will limit the output files to those belonging to the given classes.", choices=('client', 'impostor'))
     parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
     parser.set_defaults(func=dumplist) #action
 
     # the "checkfiles" action
     parser = subparsers.add_parser('checkfiles', help=checkfiles.__doc__)
-    parser.add_argument('-l', '--list-directory', required=True, help="The directory which contains the file lists.")
-    parser.add_argument('-d', '--directory', dest="directory", default='', help="if given, this path will be prepended to every entry returned.")
-    parser.add_argument('-e', '--extension', dest="extension", default='', help="if given, this extension will be appended to every entry returned.")
     parser.add_argument('-p', '--protocol', help="Gives the data for the given protocol.", choices=('male', 'female'), default='male')
+    parser.add_argument('-d', '--directory', help="if given, this path will be prepended to every entry returned.")
+    parser.add_argument('-e', '--extension', help="if given, this extension will be appended to every entry returned.")
     parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
-
     parser.set_defaults(func=checkfiles) #action
+
+    # adds the "reverse" command
+    parser = subparsers.add_parser('reverse', help=reverse.__doc__)
+    parser.add_argument('path', nargs='+', help="one or more path stems to look up. If you provide more than one, files which cannot be reversed will be omitted from the output.")
+    parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
+    parser.set_defaults(func=reverse) #action
+
+    # adds the "path" command
+    parser = subparsers.add_parser('path', help=path.__doc__)
+    parser.add_argument('-d', '--directory', help="if given, this path will be prepended to every entry returned.")
+    parser.add_argument('-e', '--extension', help="if given, this extension will be appended to every entry returned.")
+    parser.add_argument('id', nargs='+', type=int, help="one or more file ids to look up. If you provide more than one, files which cannot be found will be omitted from the output. If you provide a single id to lookup, an error message will be printed if the id does not exist in the database. The exit status will be non-zero in such case.")
+    parser.add_argument('--self-test', dest="selftest", action='store_true', help=argparse.SUPPRESS)
+    parser.set_defaults(func=path) #action

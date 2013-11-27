@@ -3,9 +3,14 @@ Speaker recognition protocol on the NIST SRE 2012 Database
 
 The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing series that starts in 1996.
 
-In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012. The file lists of the development set were designed by the I4U consortium during its participation to the competition. Special thanks to Rahim Saeidi for the good work (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz). The file names were then normalized following the `PRISM definition`_.
+In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012.
+The file lists of the development set were designed by the I4U consortium during its participation to the competition.
+Special thanks to Rahim Saeidi for the good work (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz).
+The file names were then normalized following the `PRISM definition`_.
 
-This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12. `xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap. The list files can also be used independently as explained below.
+This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12.
+`xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap.
+The list files can also be used independently as explained below.
 
 If you use this package and/or its results, please cite the following publications:
 
@@ -59,8 +64,7 @@ Just download this package and decompress it locally::
   $ unzip xbob.db.nist_sre12-0.0.1a2.zip
   $ cd xbob.db.nist_sre12-0.0.1a2
 
-Use buildout to bootstrap and have a working environment ready for
-experiments::
+Use buildout to bootstrap and have a working environment ready for experiments::
 
   $ python bootstrap
   $ ./bin/buildout
@@ -79,7 +83,8 @@ Please follow the instructions and the evaluation plan given by NIST::
 
   http://www.nist.gov/itl/iad/mig/sre12.cfm
 
-Depending on the release year, the data may need to be flatten and reorganized. Please, follow the file structure as appearing when running::
+Depending on the release year, the data may need to be flatten and reorganized.
+Please, follow the file structure as appearing when running::
  
   $ bin/bob_dbmanage.py nist_sre12 dumplist
 
@@ -91,12 +96,14 @@ For this purpose, you will need the utilities provided by NIST with the database
 Decompressing the data and splitting the audio channels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The data provided by NIST are compressed in a non-standard format. NIST supplies a binary called `w_decode` to perform the decompression.
+The data provided by NIST are compressed in a non-standard format.
+NIST supplies a binary called `w_decode` to perform the decompression.
 Therefore, you should decompress all the files using the following command (where NIST_FOLDER/bin is the one containing the `w_decode` utility::
 
   $ NIST_FOLDER/bin/w_decode -o pcm $compressedfile $decompressedfile
 
-Several files are in stereo and hence contain two audio channels. These files needs to be split using a script similar to the following one::
+Several files are in stereo and hence contain two audio channels.
+These files needs to be split using a script similar to the following one::
 
   $ decompressedfileStereo=`basename $decompressedfile .sph`
   $ num=`soxi $decompressedfile | grep Channels | cut -c 18`
@@ -115,7 +122,8 @@ Several files are in stereo and hence contain two audio channels. These files ne
 Adding noise
 ~~~~~~~~~~~~
 
-In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set. This can be done using FaNT::
+In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set.
+This can be done using FaNT::
   
   http://dnt.kr.hsnr.de/download.html
 
@@ -137,7 +145,8 @@ The denoising of the audio signal can be done using QIO::
 Using independently the file lists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The file lists of the development and evaluation sets are shipped with this package. They can be used independently, and can be found here::
+The file lists of the development and evaluation sets are shipped with this package.
+They can be used independently, and can be found here::
 
   $ cd xbob/db/nist_sre12/lists/
 

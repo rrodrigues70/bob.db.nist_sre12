@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-# @author: Elie Khoury <Elie.Khoury@idiap.ch>
-# @date: Thu Aug 22 17:43:04 CEST 2013
+# Laurent El Shafey <laurent.el-shafey@idiap.ch>
 #
 # Copyright (C) 2012-2013 Idiap Research Institute, Martigny, Switzerland
 #
@@ -17,14 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""
-Details about the NIST SRE 2012 database can be found here:
+"""Details about the NIST SRE 2012 database can be found here:
 http://www.nist_sre12.org/
 """
 
 from .query import Database
-from xbob.db.verification.filelist.models import File, Client
+from .models import Client, File, Protocol, ProtocolPurpose
 
 __all__ = dir()
-
-

@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
 # Laurent El Shafey <Laurent.El-Shafey@idiap.ch>
-# Fri Aug 23 12:32:01 CEST 2013
 #
-# Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
+# Copyright (C) 2012-2013 Idiap Research Institute, Martigny, Switzerland
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,10 +18,12 @@
 
 from setuptools import setup, find_packages
 
+# The only thing we do in this file is to call the setup() function with all
+# parameters that define our package.
 setup(
 
     name='xbob.db.nist_sre12',
-    version='0.0.1a2',
+    version='0.1.0',
     description='Speaker verification protocol on the NIST SRE 2012',
     url='http://pypi.python.org/pypi/xbob.db.nist_sre12',
     license='GPLv3',
@@ -31,28 +32,30 @@ setup(
     keywords = "Speaker Recognition, Speaker verification, Gaussian Mixture Model, ISV, UBM-GMM, I-Vector, Audio processing, NIST SRE 2012, Database",
     long_description=open('README.rst').read(),
 
+    # This line is required for any distutils based packaging.
     packages=find_packages(),
     include_package_data=True,
-    zip_safe = False,
+    zip_safe=False,
 
     install_requires=[
       'setuptools',
-      'bob',
-      'xbob.db.verification.filelist',
-    ],
+      'six',  # py2/3 compatibility library
+      'bob',  # base signal proc./machine learning library
+      'xbob.db.verification.utils>=0.1.4' # defines a set of utilities for face verification databases like this one.
+      ],
 
     namespace_packages = [
       'xbob',
       'xbob.db',
-    ],
+      ],
 
     entry_points = {
-      # declare database to bob
+      # bob database declaration
       'bob.db': [
         'nist_sre12 = xbob.db.nist_sre12.driver:Interface',
         ],
 
-      # declare tests to bob
+      # bob unittest declaration
       'bob.test': [
         'nist_sre12 = xbob.db.nist_sre12.test:NistDatabaseTest',
         ],
@@ -60,7 +63,10 @@ setup(
 
     classifiers = [
       'Development Status :: 4 - Beta',
+      'Environment :: Console',
+      'Intended Audience :: Developers',
       'Intended Audience :: Education',
+      'Intended Audience :: Science/Research',
       'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
       'Natural Language :: English',
       'Programming Language :: Python',

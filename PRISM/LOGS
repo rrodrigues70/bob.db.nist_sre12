@@ -1,0 +1,124 @@
+FIXES
+
+
+1. The files
+mix06/kdrmB
+mix06/kedvA
+are incorrectly labeled as belonging to client MIX102150 in the evaluation set of male. 
+In contrast, they belong to client MIX102097 which is in the training set.
+They were hence removed from the evaluation set
+
+protocols/male/eval/for_models.lst:mix06/kdrmB MIX102150 MIX102150
+protocols/male/eval/for_models.lst:mix06/kedvA MIX102150 MIX102150
+
+
+
+2. The files
+mix06/kbhxB
+mix06/kbksA
+mix06/kbxeB
+mix06/kcbgA
+mix06/kcyaB
+mix06/kdphB
+mix06/kebqB
+mix06/kefrB
+mix06/ocwrA
+mix06/odszA
+mix06/kbhxB
+mix06/kbksA
+mix06/kbxeB
+mix06/kcbgA
+mix06/kcyaB
+mix06/kdphB
+mix06/kebqB
+mix06/kefrB
+mix06/ocwrA
+mix06/odszA
+mix06/kbhxB
+mix06/kbksA
+mix06/kbxeB
+mix06/kcbgA
+mix06/kcyaB
+mix06/kdphB
+mix06/kebqB
+mix06/kefrB
+mix06/ocwrA
+mix06/odszA
+are incorrectly labeled as belonging to client MIX102614 in the evaluation set of male. 
+In contrast, they belong to client MIX102579 which is in the training set.
+They were hence removed from the evaluation set
+
+
+protocols/female/eval/for_models.lst:mix06/kbhxB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kbksA MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kbxeB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kcbgA MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kcyaB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kdphB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kebqB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/kefrB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/ocwrA MIX102614 MIX102614
+protocols/female/eval/for_models.lst:mix06/odszA MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbhxB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbhxB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbksA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbksA-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbxeB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kbxeB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kcbgA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kcbgA-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kcyaB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kcyaB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kdphB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kdphB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kebqB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kebqB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kefrB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-kefrB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-ocwrA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:noisy/mix06/102614-ocwrA-6dB MIX102614 MIX102614
+
+
+
+DIFF
+946a947,956
+> noisy/mix06/102614-kbhxB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kbhxB-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kbksA-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kbksA-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kbxeB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kbxeB-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kcbgA-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kcbgA-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kcyaB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kcyaB-6dB MIX102614 MIX102614
+948a959,964
+> noisy/mix06/102614-kdphB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kdphB-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kebqB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kebqB-6dB MIX102614 MIX102614
+> noisy/mix06/102614-kefrB-15dB MIX102614 MIX102614
+> noisy/mix06/102614-kefrB-6dB MIX102614 MIX102614
+950a967,968
+> noisy/mix06/102614-ocwrA-15dB MIX102614 MIX102614
+> noisy/mix06/102614-ocwrA-6dB MIX102614 MIX102614
+43913a43932
+> mix06/kbhxB MIX102614 MIX102614
+43920a43940
+> mix06/kbksA MIX102614 MIX102614
+43968a43989
+> mix06/kbxeB MIX102614 MIX102614
+43981a44003
+> mix06/kcbgA MIX102614 MIX102614
+44062a44085
+> mix06/kcyaB MIX102614 MIX102614
+44137a44161
+> mix06/kdphB MIX102614 MIX102614
+44186a44211
+> mix06/kebqB MIX102614 MIX102614
+44202a44228
+> mix06/kefrB MIX102614 MIX102614
+44335a44362
+> mix06/ocwrA MIX102614 MIX102614
+44365a44393
+> mix06/odszA MIX102614 MIX102614
