@@ -91,7 +91,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
       if len(world_gender) == 1:
         q = q.filter(Client.gender.in_(world_gender))
       if filter_ids_unknown == True:
-        q = q.filter(not_(Client.id.in_([u'F_ID_X_F', u'M_ID_X_M'])))
+        q = q.filter(not_(Client.id.in_(['F_ID_X_F', 'M_ID_X_M'])))
       q = q.order_by(Client.id)
       retval += list(q)
 
@@ -103,7 +103,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
             filter(Protocol.name.in_(protocol)).filter(ProtocolPurpose.sgroup.in_(degroups)).filter(ProtocolPurpose.purpose == 'enrol').\
             order_by(Client.id)
       if filter_ids_unknown == True:
-        q = q.filter(not_(Client.id.in_([u'F_ID_X_F', u'M_ID_X_M'])))
+        q = q.filter(not_(Client.id.in_(['F_ID_X_F', 'M_ID_X_M'])))
       retval += list(q)
 
     return list(set(retval))
