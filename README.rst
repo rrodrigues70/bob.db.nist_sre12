@@ -60,9 +60,9 @@ Installation
 
 Just download this package and decompress it locally::
 
-  $ wget http://pypi.python.org/packages/source/x/xbob.db.nist_sre12/xbob.db.nist_sre12-0.0.1a2.zip
-  $ unzip xbob.db.nist_sre12-0.0.1a2.zip
-  $ cd xbob.db.nist_sre12-0.0.1a2
+  $ wget http://pypi.python.org/packages/source/x/xbob.db.nist_sre12/xbob.db.nist_sre12-1.1.1.zip
+  $ unzip xbob.db.nist_sre12-1.1.1.zip
+  $ cd xbob.db.nist_sre12-1.1.1
 
 Use buildout to bootstrap and have a working environment ready for experiments::
 
