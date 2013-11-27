@@ -45,7 +45,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     return ProtocolPurpose.group_choices # Same as Client.group_choices for this database
 
-  def clients(self, protocol=None, groups=None, world_gender=None, filter_ids_unknown=True):
+  def clients(self, protocol=None, groups=None, world_gender=None, subworld=None, filter_ids_unknown=True):
     """Returns a set of clients for the specific query by the user.
 
     Keyword Parameters:
@@ -59,6 +59,11 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     world_gender
       The gender to consider for the world data ('female', 'male')
 
+    subworld
+      The subworld to consider (only one at a time is possible).
+      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      and subworld is 'optional_world_X'.
+
     filter_ids_unknown
       Do not add the ids unknown 'F_ID_X_F' and 'M_ID_X_M'
 
@@ -68,16 +73,21 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     protocol = self.check_parameters_for_validity(protocol, "protocol", self.protocol_names())
     groups = self.check_parameters_for_validity(groups, "group", self.groups())
     world_gender = self.check_parameters_for_validity(world_gender, "world_gender", ('male', 'female'))
+    subworld = self.check_parameters_for_validity(subworld, "subworld", ('optional_world_1', 'optional_world_2'))
 
     # List of the clients
     retval = []
     wgroups = []
-    if 'world' in groups: wgroups.append('world')
+    if 'world' in groups:
+      if len(subworld) == 2:
+        wgroups.append('world')
+      elif len(subworld) == 1 and 'world' in groups:
+        wgroups.append(subworld[0])
     if 'optional_world_1' in groups: wgroups.append('optional_world_1')
     if 'optional_world_2' in groups: wgroups.append('optional_world_2')
     if len(wgroups) > 0:
       q = self.query(Client).join((ProtocolPurpose, Client.protocolPurposes)).join((Protocol, ProtocolPurpose.protocol)).\
-            filter(Protocol.name.in_(protocol)).filter(ProtocolPurpose.sgroup.in_(groups)).filter(ProtocolPurpose.purpose == 'train')
+            filter(Protocol.name.in_(protocol)).filter(ProtocolPurpose.sgroup.in_(wgroups)).filter(ProtocolPurpose.purpose == 'train')
       if len(world_gender) == 1:
         q = q.filter(Client.gender.in_(world_gender))
       if filter_ids_unknown == True:
@@ -126,7 +136,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     if 'eval' in groups: degroups.append('eval')
     if len(degroups) > 0:
       q = self.query(TClient).join((ProtocolPurpose, TClient.protocolPurposes)).join((Protocol, ProtocolPurpose.protocol)).\
-            filter(Protocol.name.in_(protocol)).filter(ProtocolPurpose.sgroup.in_(degroups)).filter(ProtocolPurpose.purpose == 'tnorm').\
+            filter(and_(Protocol.name.in_(protocol), ProtocolPurpose.sgroup.in_(degroups), ProtocolPurpose.purpose == 'tnorm')).\
             order_by(TClient.id)
       if len(gender) == 1:
         q = q.filter(TClient.gender.in_(gender))
@@ -135,7 +145,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     return list(set(retval))
 
 
-  def models(self, protocol=None, groups=None, world_gender=None, filter_ids_unknown=True):
+  def models(self, protocol=None, groups=None, world_gender=None, subworld=None, filter_ids_unknown=True):
     """Returns a set of models for the specific query by the user.
 
     Keyword Parameters:
@@ -149,15 +159,20 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     world_gender
       The gender to consider for the world data ('female', 'male')
 
+    subworld
+      The subworld to consider (only one at a time is possible).
+      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      and subworld is 'optional_world_X'.
+
     filter_ids_unknown
       Do not add the ids unknown 'F_ID_X' and 'M_ID_X'
 
     Returns: A list containing all the models belonging to the given group.
     """
 
-    return self.clients(protocol, groups, world_gender, filter_ids_unknown)
+    return self.clients(protocol, groups, world_gender, subworld, filter_ids_unknown)
 
-  def model_ids(self, protocol=None, groups=None, world_gender=None, filter_ids_unknown=True):
+  def model_ids(self, protocol=None, groups=None, world_gender=None, subworld=None, filter_ids_unknown=True):
     """Returns a list of model ids for the specific query by the user.
 
     Keyword Parameters:
@@ -171,13 +186,18 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     world_gender
       The gender to consider for the world data ('female', 'male')
 
+    subworld
+      The subworld to consider (only one at a time is possible).
+      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      and subworld is 'optional_world_X'.
+
     filter_ids_unknown
       Do not add the ids unknown 'F_ID_X' and 'M_ID_X'
 
     Returns: A list containing the ids of all models belonging to the given group.
     """
 
-    return [client.id for client in self.clients(protocol, groups, world_gender, filter_ids_unknown)]
+    return [client.id for client in self.clients(protocol, groups, world_gender, subworld, filter_ids_unknown)]
 
   def tmodels(self, protocol=None, groups=None, gender=None):
     """Returns a set of T-Norm models for the specific query by the user.

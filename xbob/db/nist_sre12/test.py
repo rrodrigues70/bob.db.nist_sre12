@@ -48,6 +48,13 @@ class NistDatabaseTest(unittest.TestCase):
     self.assertEqual(len(db.clients(protocol='male', groups='dev')), 680)
     self.assertEqual(len(db.clients(protocol='male', groups='eval')), 763)
 
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_1', world_gender='male')), 673) # 672
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_1', world_gender='female')), 941)
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_1')), 1614)
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_2',  world_gender='male')), 673) # 672
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_2',  world_gender='female')), 941)
+    self.assertEqual(len(db.clients(protocol='male', groups='world', subworld='optional_world_2')), 1614)
+
     self.assertEqual(len(db.model_ids(protocol='male')), 16680)
     self.assertEqual(len(db.model_ids(protocol='male', world_gender='male')), 7482)
     self.assertEqual(len(db.model_ids(protocol='male', world_gender='female')), 9961)
@@ -63,9 +70,30 @@ class NistDatabaseTest(unittest.TestCase):
     self.assertEqual(len(db.model_ids(protocol='male', groups='dev')), 680)
     self.assertEqual(len(db.model_ids(protocol='male', groups='eval')), 763)
 
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_1', world_gender='male')), 673) # 672
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_1', world_gender='female')), 941)
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_1')), 1614)
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_2',  world_gender='male')), 673) # 672
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_2',  world_gender='female')), 941)
+    self.assertEqual(len(db.model_ids(protocol='male', groups='world', subworld='optional_world_2')), 1614)
+
     self.assertEqual(len(db.objects(protocol='male', groups='world', world_gender='male')), 33322) # 33311
     self.assertEqual(len(db.objects(protocol='male', groups='world', world_gender='female')), 42521) # 42532
     self.assertEqual(len(db.objects(protocol='male', groups='world')), 75843)
+
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_1', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_1', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_1')), 31524)
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_2', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_2', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='male', groups='optional_world_2')), 31524)
+
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_1', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_1', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_1')), 31524)
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_2', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_2', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='male', groups='world', subworld='optional_world_2')), 31524)
 
     self.assertEqual(len(db.objects(protocol='male', groups='dev', purposes='enrol')), 16941)
     self.assertEqual(len(db.objects(protocol='male', groups='dev', purposes='enrol', model_ids='MIX104296_M')), 12)
@@ -91,6 +119,13 @@ class NistDatabaseTest(unittest.TestCase):
     self.assertEqual(len(db.clients(protocol='female', groups='dev')), 1039)
     self.assertEqual(len(db.clients(protocol='female', groups='eval')), 1155)
 
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_1', world_gender='female')), 941)
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_1', world_gender='male')), 673) # 672
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_1')), 1614)
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_2',  world_gender='female')), 941)
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_2',  world_gender='male')), 673) # 672
+    self.assertEqual(len(db.clients(protocol='female', groups='world', subworld='optional_world_2')), 1614)
+
     self.assertEqual(len(db.model_ids(protocol='female')), 17038)
     self.assertEqual(len(db.model_ids(protocol='female', world_gender='female')), 10271)
     self.assertEqual(len(db.model_ids(protocol='female', world_gender='male')), 7922)
@@ -106,9 +141,30 @@ class NistDatabaseTest(unittest.TestCase):
     self.assertEqual(len(db.model_ids(protocol='female', groups='dev')), 1039)
     self.assertEqual(len(db.model_ids(protocol='female', groups='eval')), 1155)
 
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_1', world_gender='female')), 941)
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_1', world_gender='male')), 673) # 672
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_1')), 1614)
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_2',  world_gender='female')), 941)
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_2',  world_gender='male')), 673) # 672
+    self.assertEqual(len(db.model_ids(protocol='female', groups='world', subworld='optional_world_2')), 1614)
+
     self.assertEqual(len(db.objects(protocol='female', groups='world', world_gender='male')), 33322) # 33311
     self.assertEqual(len(db.objects(protocol='female', groups='world', world_gender='female')), 42521) # 42532
     self.assertEqual(len(db.objects(protocol='female', groups='world')), 75843)
+
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_1', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_1', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_1')), 31524)
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_2', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_2', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='female', groups='optional_world_2')), 31524)
+
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_1', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_1', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_1')), 31524)
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_2', world_gender='female')), 17810)
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_2', world_gender='male')), 13714)
+    self.assertEqual(len(db.objects(protocol='female', groups='world', subworld='optional_world_2')), 31524)
 
     self.assertEqual(len(db.objects(protocol='female', groups='dev', purposes='enrol')), 24693)
     self.assertEqual(len(db.objects(protocol='female', groups='dev', purposes='enrol', model_ids='MIX108878_F')), 30)
