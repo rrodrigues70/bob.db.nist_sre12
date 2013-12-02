@@ -31,6 +31,10 @@ class NistDatabaseTest(unittest.TestCase):
     from pkg_resources import resource_filename
     
     db = Database()
+    
+    self.assertEqual(len(db.groups()), 5)
+    self.assertEqual(len(db.groups(protocol='male')), 5)
+    self.assertEqual(len(db.groups(protocol='female')), 5)
 
     # For Male protocol
     self.assertEqual(len(db.clients(protocol='male')), 16680)
