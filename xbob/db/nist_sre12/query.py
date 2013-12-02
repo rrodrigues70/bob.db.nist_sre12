@@ -40,7 +40,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
     # call base class constructors
     xbob.db.verification.utils.SQLiteDatabase.__init__(self, SQLITE_FILE, File)
 
-  def groups(self):
+  def groups(self, protocol=None):
     """Returns the names of all registered groups"""
 
     return ProtocolPurpose.group_choices # Same as Client.group_choices for this database
