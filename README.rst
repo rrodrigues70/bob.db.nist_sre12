@@ -8,23 +8,19 @@ The file lists of the development set were designed by the I4U consortium during
 Special thanks to Rahim Saeidi for the good work (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz).
 The file names were then normalized following the `PRISM definition`_.
 
-This package is automatically downloaded/used by `xbob.spkrec.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12.
-`xbob.spkrec.nist_sre12`_ itself relies on `xbob.spkrec`_, an open-source speaker recognition toolbox developed at Idiap.
+This package is automatically downloaded/used by `spear.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12.
+`spear.nist_sre12`_ itself relies on `spear`_, an open-source speaker recognition toolbox developed at Idiap.
 The list files can also be used independently as explained below.
 
 If you use this package and/or its results, please cite the following publications:
 
-1. The original paper presented at the NIST SRE 2012 workshop::
+1. The Spear paper published at ICASSP 2014::
 
-     @inproceedings{Khoury_NISTSRE_2012,
-       author = {Khoury, Elie and El Shafey, Laurent and Marcel, S{\'{e}}bastien},
-       month = {dec},
-       title = {The Idiap Speaker Recognition Evaluation System at NIST SRE 2012},
-       booktitle = {NIST Speaker Recognition Conference},
-       year = {2012},
-       location = {Orlando, USA},
-       organization = {NIST},
-       pdf = {http://publications.idiap.ch/downloads/papers/2012/Khoury_NISTSRE_2012.pdf}
+    @inproceedings{spear,
+      author = {Khoury, E. and El Shafey, L. and Marcel, S.},
+      title = {Spear: An open source toolbox for speaker recognition based on {B}ob},
+      booktitle = {IEEE Intl. Conf. on Acoustics, Speech and Signal Processing (ICASSP)},
+      year = {2014},
     }
 
 
@@ -136,8 +132,8 @@ The denoising of the audio signal can be done using QIO::
   http://www1.icsi.berkeley.edu/Speech/papers/qio/
 
 .. _nist_sre12: http://www.nist_sre12.org/
-.. _xbob.spkrec: https://github.com/bioidiap/xbob.spkrec
-.. _xbob.spkrec.nist_sre12: https://github.com/bioidiap/xbob.spkrec.nist_sre12
+.. _spear: https://github.com/bioidiap/bob.spear
+.. _spear.nist_sre12: https://github.com/bioidiap/spear.nist_sre12
 .. _2012 NIST Speaker Recognition Evaluation: http://www.nist.gov/itl/iad/mig/sre12.cfm
 .. _PRISM definition: http://code.google.com/p/prism-set
 
