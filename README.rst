@@ -5,7 +5,7 @@ The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing se
 
 In this package, we implement speaker recognition protocols (both Male and Female) for the NIST SRE 2012.
 The file lists of the development set were designed by the I4U consortium during its participation to the competition.
-Special thanks to Rahim Saeidi for the good work (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz).
+Special thanks to Rahim Saeidi (original link of the lists: http://cls.ru.nl/~saeidi/file_library/I4U.tgz).
 The file names were then normalized following the `PRISM definition`_.
 
 This package is automatically downloaded/used by `spear.nist_sre12`_ to reproduce the results of Idiap Research Institute at SRE12.
@@ -33,7 +33,7 @@ If you use this package and/or its results, please cite the following publicatio
        booktitle = {INTERSPEECH},
        year = {2013},
        location = {Lyon, France},
-       pdf = {to appear}
+       pdf = {http://publications.idiap.ch/downloads/papers/2013/Saedi_INTERSPEECH_2013.pdf}
     }
 
 
