@@ -23,7 +23,7 @@ from setuptools import setup, find_packages
 setup(
 
     name='xbob.db.nist_sre12',
-    version='1.1.6',
+    version='1.1.8a0',
     description='Speaker verification protocol on the NIST SRE 2012',
     url='http://www.github.com/bioidiap/xbob.db.nist_sre12',
     license='GPLv3',
