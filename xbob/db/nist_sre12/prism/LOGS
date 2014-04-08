@@ -59,49 +59,49 @@ protocols/female/eval/for_models.lst:mix06/kebqB MIX102614 MIX102614
 protocols/female/eval/for_models.lst:mix06/kefrB MIX102614 MIX102614
 protocols/female/eval/for_models.lst:mix06/ocwrA MIX102614 MIX102614
 protocols/female/eval/for_models.lst:mix06/odszA MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbhxB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbhxB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbksA-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbksA-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbxeB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kbxeB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kcbgA-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kcbgA-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kcyaB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kcyaB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kdphB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kdphB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kebqB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kebqB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kefrB-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-kefrB-6dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-ocwrA-15dB MIX102614 MIX102614
-protocols/female/eval/for_models.lst:noisy/mix06/102614-ocwrA-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbhxB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbhxB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbksA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbksA-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbxeB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kbxeB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kcbgA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kcbgA-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kcyaB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kcyaB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kdphB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kdphB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kebqB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kebqB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kefrB-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-kefrB-6dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-ocwrA-15dB MIX102614 MIX102614
+protocols/female/eval/for_models.lst:denoised/mix06/102614-ocwrA-6dB MIX102614 MIX102614
 
 
 
 DIFF
 946a947,956
-> noisy/mix06/102614-kbhxB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kbhxB-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kbksA-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kbksA-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kbxeB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kbxeB-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kcbgA-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kcbgA-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kcyaB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kcyaB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kbhxB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kbhxB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kbksA-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kbksA-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kbxeB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kbxeB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kcbgA-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kcbgA-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kcyaB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kcyaB-6dB MIX102614 MIX102614
 948a959,964
-> noisy/mix06/102614-kdphB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kdphB-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kebqB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kebqB-6dB MIX102614 MIX102614
-> noisy/mix06/102614-kefrB-15dB MIX102614 MIX102614
-> noisy/mix06/102614-kefrB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kdphB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kdphB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kebqB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kebqB-6dB MIX102614 MIX102614
+> denoised/mix06/102614-kefrB-15dB MIX102614 MIX102614
+> denoised/mix06/102614-kefrB-6dB MIX102614 MIX102614
 950a967,968
-> noisy/mix06/102614-ocwrA-15dB MIX102614 MIX102614
-> noisy/mix06/102614-ocwrA-6dB MIX102614 MIX102614
+> denoised/mix06/102614-ocwrA-15dB MIX102614 MIX102614
+> denoised/mix06/102614-ocwrA-6dB MIX102614 MIX102614
 43913a43932
 > mix06/kbhxB MIX102614 MIX102614
 43920a43940
