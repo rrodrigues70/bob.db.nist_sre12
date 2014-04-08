@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 :
 # Laurent El Shafey <Laurent.El-Shafey@idiap.ch>
 #
-# Copyright (C) 2012-2013 Idiap Research Institute, Martigny, Switzerland
+# Copyright (C) 2012-2014 Idiap Research Institute, Martigny, Switzerland
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,13 +23,13 @@ from setuptools import setup, find_packages
 setup(
 
     name='xbob.db.nist_sre12',
-    version='1.1.8a0',
+    version='1.2.0',
     description='Speaker verification protocol on the NIST SRE 2012',
-    url='http://www.github.com/bioidiap/xbob.db.nist_sre12',
+    url='https://pypi.python.org/pypi/xbob.db.nist_sre12/',
     license='GPLv3',
     author='Elie Khoury',
     author_email='Elie.Khoury@idiap.ch',
-    keywords = "Speaker Recognition, Speaker verification, Gaussian Mixture Model, ISV, UBM-GMM, I-Vector, Audio processing, NIST SRE 2012, Database",
+    keywords = "Spear, Speaker Recognition, Speaker verification, Gaussian Mixture Model, ISV, UBM-GMM, I-Vector, Audio processing, NIST SRE 2012, Database",
     long_description=open('README.rst').read(),
 
     # This line is required for any distutils based packaging.

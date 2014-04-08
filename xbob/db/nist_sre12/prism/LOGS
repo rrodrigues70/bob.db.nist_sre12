@@ -122,3 +122,7 @@ DIFF
 > mix06/ocwrA MIX102614 MIX102614
 44365a44393
 > mix06/odszA MIX102614 MIX102614
+
+
+
+3. 'noisy' directory is renamed 'denoised'
