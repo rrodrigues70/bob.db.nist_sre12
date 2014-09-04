@@ -22,14 +22,14 @@ from setuptools import setup, find_packages
 # parameters that define our package.
 setup(
 
-    name='xbob.db.nist_sre12',
+    name='bob.db.nist_sre12',
     version='1.2.0a0',
     description='Speaker verification protocol on the NIST SRE 2012',
-    url='https://pypi.python.org/pypi/xbob.db.nist_sre12/',
+    url='https://pypi.python.org/pypi/bob.db.nist_sre12',
     license='GPLv3',
     author='Elie Khoury',
     author_email='Elie.Khoury@idiap.ch',
-    keywords = "Spear, Speaker Recognition, Speaker verification, Gaussian Mixture Model, ISV, UBM-GMM, I-Vector, Audio processing, NIST SRE 2012, Database",
+    keywords = "Spear, Speaker Recognition, Speaker verification, Audio processing, NIST SRE 2012, Database",
     long_description=open('README.rst').read(),
 
     # This line is required for any distutils based packaging.
@@ -40,26 +40,21 @@ setup(
     install_requires=[
       'setuptools',
       'six',  # py2/3 compatibility library
-      'bob',  # base signal proc./machine learning library
-      'xbob.db.verification.utils>=0.1.4' # defines a set of utilities for face verification databases like this one.
-      ],
+      'bob.db.base',
+      'bob.db.verification.utils' # defines a set of utilities for face verification databases like this one.
+    ],
 
     namespace_packages = [
-      'xbob',
-      'xbob.db',
-      ],
+      'bob',
+      'bob.db',
+    ],
 
     entry_points = {
       # bob database declaration
       'bob.db': [
-        'nist_sre12 = xbob.db.nist_sre12.driver:Interface',
-        ],
-
-      # bob unittest declaration
-      'bob.test': [
-        'nist_sre12 = xbob.db.nist_sre12.test:NistDatabaseTest',
-        ],
-      },
+        'nist_sre12 = bob.db.nist_sre12.driver:Interface',
+      ],
+    },
 
     classifiers = [
       'Development Status :: 4 - Beta',
@@ -73,5 +68,5 @@ setup(
       'Programming Language :: Python :: 3',
       'Topic :: Scientific/Engineering :: Artificial Intelligence',
       'Topic :: Database :: Front-Ends',
-      ],
+    ],
 )

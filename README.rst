@@ -1,5 +1,22 @@
-Speaker recognition protocol on the NIST SRE 2012 Database 
-==========================================================
+.. vim: set fileencoding=utf-8 :
+.. Manuel Guenther <manuel.guenther@idiap.ch>
+.. Thu Sep  4 11:35:05 CEST 2014
+
+.. image:: https://travis-ci.org/bioidiap/bob.db.nist_sre12.svg?branch=master
+   :target: https://travis-ci.org/bioidiap/bob.db.nist_sre12
+.. image:: https://coveralls.io/repos/bioidiap/bob.db.nist_sre12/badge.png
+   :target: https://coveralls.io/r/bioidiap/bob.db.nist_sre12
+.. image:: http://img.shields.io/github/tag/bioidiap/bob.db.nist_sre12.png
+   :target: https://github.com/bioidiap/bob.db.nist_sre12
+.. image:: http://img.shields.io/pypi/v/bob.db.nist_sre12.png
+   :target: https://pypi.python.org/pypi/bob.db.nist_sre12
+.. image:: http://img.shields.io/pypi/dm/bob.db.nist_sre12.png
+   :target: https://pypi.python.org/pypi/bob.db.nist_sre12
+
+
+============================================================
+ Speaker recognition protocol on the NIST SRE 2012 Database
+============================================================
 
 The `2012 NIST Speaker Recognition Evaluation`_ (SRE12) is part of an ongoing series that starts in 1996.
 
@@ -57,9 +74,9 @@ Installation
 
 Just download this package and decompress it locally::
 
-  $ wget http://pypi.python.org/packages/source/x/xbob.db.nist_sre12/xbob.db.nist_sre12-1.1.1.zip
-  $ unzip xbob.db.nist_sre12-1.1.1.zip
-  $ cd xbob.db.nist_sre12-1.1.1
+  $ wget http://pypi.python.org/packages/source/x/bob.db.nist_sre12/bob.db.nist_sre12-1.1.1.zip
+  $ unzip bob.db.nist_sre12-1.1.1.zip
+  $ cd bob.db.nist_sre12-1.1.1
 
 Use buildout to bootstrap and have a working environment ready for experiments::
 
@@ -69,7 +86,7 @@ Use buildout to bootstrap and have a working environment ready for experiments::
 This also requires that bob (>= 1.2.0) is installed.
 
 To create the SQL database, just run the following command line (this can take 6-7 minutes)::
-  
+
   $ bin/bob_dbmanage.py nist_sre12 create
 
 Getting the data
@@ -85,7 +102,7 @@ Please follow the instructions and the evaluation plan given by NIST::
 
 Depending on the release year, the data may need to be flatten and reorganized.
 Please, follow the file structure as appearing when running::
- 
+
   $ bin/bob_dbmanage.py nist_sre12 dumplist
 
 For this purpose, you will need the utilities provided by NIST with the database, as well as `sox`.
@@ -118,25 +135,25 @@ These files needs to be split using a script similar to the following one::
   $   cp $decompressedfile $outputDir/
   $ fi
 
-   
+
 Adding noise
 ~~~~~~~~~~~~
 
 In order to better represent the SRE12 evaluation set, 2 noisy versions (SNR=6dB and SNR=15dB) of the same segments were included to the development set (both target models and test utterances).
 This can be done using FaNT::
-  
+
   http://dnt.kr.hsnr.de/download.html
 
 The noise samples were mainly collected from freesound.org and include HVAC and crowd noise. They are available under request. The description of the added noise for each of the audio files can be found here::
 
- $ cd xbob/db/nist_sre12/noise_description/
- 
+ $ cd bob/db/nist_sre12/noise_description/
+
 
 Speech enhancement
 ~~~~~~~~~~~~~~~~~~
 
 The denoising of the audio signal can be done using QIO::
-  
+
   http://www1.icsi.berkeley.edu/Speech/papers/qio/
 
 .. _nist_sre12: http://www.nist_sre12.org/
@@ -152,7 +169,7 @@ Using independently the file lists
 The file lists of the development and evaluation sets are shipped with this package.
 They can be used independently, and can be found here::
 
-  $ cd xbob/db/nist_sre12/prism/
+  $ cd bob/db/nist_sre12/prism/
 
 The file lists of the development set were prepared by the I4U consortium.
 

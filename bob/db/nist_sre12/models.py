@@ -20,13 +20,12 @@
 """
 
 import os, numpy
-import bob.db.utils
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, or_, and_, not_
-from bob.db.sqlalchemy_migration import Enum, relationship
+from bob.db.base.sqlalchemy_migration import Enum, relationship
 from sqlalchemy.orm import backref
 from sqlalchemy.ext.declarative import declarative_base
 
-import xbob.db.verification.utils
+import bob.db.verification.utils
 
 Base = declarative_base()
 
@@ -64,7 +63,7 @@ class Client(Base):
     return "Client(%s, %s)" % (self.id, self.gender)
 
 
-class File(Base, xbob.db.verification.utils.File):
+class File(Base, bob.db.verification.utils.File):
   """Generic file container"""
 
   __tablename__ = 'file'
@@ -81,7 +80,7 @@ class File(Base, xbob.db.verification.utils.File):
 
   def __init__(self, client_id, path):
     # call base class constructor
-    xbob.db.verification.utils.File.__init__(self, client_id = client_id, path = path)
+    bob.db.verification.utils.File.__init__(self, client_id = client_id, path = path)
 
 class Protocol(Base):
   """NIST SRE 2012 protocols"""

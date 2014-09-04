@@ -21,24 +21,24 @@ NIST SRE 2012 database in the most obvious ways.
 """
 
 import os
-from bob.db import utils
+from bob.db.base import utils
 from .models import *
 from .driver import Interface
 
-import xbob.db.verification.utils
+import bob.db.verification.utils
 
 SQLITE_FILE = Interface().files()[0]
 
-class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.utils.ZTDatabase):
+class Database(bob.db.verification.utils.SQLiteDatabase, bob.db.verification.utils.ZTDatabase):
   """The dataset class opens and maintains a connection opened to the Database.
 
   It provides many different ways to probe for the characteristics of the data
   and for the data itself inside the database.
   """
 
-  def __init__(self):
+  def __init__(self, original_directory = None, original_extension = ".sph"):
     # call base class constructors
-    xbob.db.verification.utils.SQLiteDatabase.__init__(self, SQLITE_FILE, File)
+    bob.db.verification.utils.SQLiteDatabase.__init__(self, SQLITE_FILE, File, original_directory = original_directory, original_extension = original_extension)
 
   def groups(self, protocol=None):
     """Returns the names of all registered groups"""
@@ -61,7 +61,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     subworld
       The subworld to consider (only one at a time is possible).
-      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      This is an alias to the group 'optional_world_X' when groups is 'world'
       and subworld is 'optional_world_X'.
 
     filter_ids_unknown
@@ -161,7 +161,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     subworld
       The subworld to consider (only one at a time is possible).
-      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      This is an alias to the group 'optional_world_X' when groups is 'world'
       and subworld is 'optional_world_X'.
 
     filter_ids_unknown
@@ -188,7 +188,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     subworld
       The subworld to consider (only one at a time is possible).
-      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      This is an alias to the group 'optional_world_X' when groups is 'world'
       and subworld is 'optional_world_X'.
 
     filter_ids_unknown
@@ -248,7 +248,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     return self.query(Client).filter(Client.id==id).one()
 
-  def get_client_id_from_model_id(self, model_id):
+  def get_client_id_from_model_id(self, model_id, **kwargs):
     """Returns the client_id attached to the given model_id
 
     Keyword Parameters:
@@ -292,7 +292,7 @@ class Database(xbob.db.verification.utils.SQLiteDatabase, xbob.db.verification.u
 
     subworld
       The subworld to consider (only one at a time is possible).
-      This is an alias to the group 'optional_world_X' when groups is 'world' 
+      This is an alias to the group 'optional_world_X' when groups is 'world'
       and subworld is 'optional_world_X'.
 
     classes

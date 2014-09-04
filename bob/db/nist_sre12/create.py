@@ -25,11 +25,11 @@ from .models import *
 
 def add_files(session, all_files, verbose):
   """Add files to the NIST SRE 2012 database."""
-  
+
   def add_client(session, id, gender, verbose):
     """Add a client to the database"""
     if verbose>1: print("  Adding client '%s'..." %(id,))
-   
+
     client = Client(id, gender)
     session.add(client)
     session.flush()
@@ -46,6 +46,7 @@ def add_files(session, all_files, verbose):
     session.refresh(file_)
     return file_
 
+  if verbose: print("Adding files ...")
   client_dict = {}
   file_dict = {}
   f = open(all_files)
@@ -73,7 +74,7 @@ def add_protocols(session, protocol_dir, file_dict, client_dict, verbose):
   for proto in protocols:
     p = Protocol(proto)
     # Add protocol
-    if verbose>1: print("Adding protocol %s..." % (proto))
+    if verbose: print("Adding protocol %s..." % (proto))
     session.add(p)
     session.flush()
     session.refresh(p)
@@ -93,7 +94,7 @@ def add_protocols(session, protocol_dir, file_dict, client_dict, verbose):
       f = open(os.path.join(protocol_dir, proto, purpose[2]))
       for line in f:
         path = line.split()[0]
-        if (path in file_dict):      
+        if (path in file_dict):
           if verbose>1: print("    Adding protocol file '%s'..." % (path, ))
           pu.files.append(file_dict[path])
           c_id = file_dict[path].client_id
@@ -122,12 +123,12 @@ def add_protocols(session, protocol_dir, file_dict, client_dict, verbose):
               raise RuntimeError("Client '%s' is in the protocol list but not in the database" % c_id)
         else:
           raise RuntimeError("File '%s' is in the protocol list but not in the database" % path)
-            
+
 
 def create_tables(args):
   """Creates all necessary tables (only to be used at the first time)"""
 
-  from bob.db.utils import create_engine_try_nolock
+  from bob.db.base.utils import create_engine_try_nolock
 
   engine = create_engine_try_nolock(args.type, args.files[0], echo=(args.verbose > 2))
   Base.metadata.create_all(engine)
@@ -138,7 +139,7 @@ def create_tables(args):
 def create(args):
   """Creates or re-creates this database"""
 
-  from bob.db.utils import session_try_nolock
+  from bob.db.base.utils import session_try_nolock
 
   dbfile = args.files[0]
 
