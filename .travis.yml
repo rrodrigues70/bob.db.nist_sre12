@@ -25,6 +25,7 @@ install:
 - ./bin/buildout
 script:
 - ./bin/python -c 'from bob.db.nist_sre12 import get_config; print(get_config())'
+- ./bin/bob_dbmanage.py nist_sre12 download
 - ./bin/coverage run --source=bob.db.nist_sre12 ./bin/nosetests -sv
 - ./bin/sphinx-build -b doctest doc sphinx
 - ./bin/sphinx-build -b html doc sphinx
